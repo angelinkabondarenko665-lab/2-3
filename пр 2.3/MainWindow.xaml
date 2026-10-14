@@ -1,0 +1,64 @@
+﻿<Window x:Class="np_2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ПР №2 Вариант 4: Обработка массива" Height="500" Width="600"
+        WindowStartupLocation="CenterScreen">
+
+    <!-- Главное меню программы -->
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Выход" Click="BtnExit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Справка">
+                <MenuItem Header="О программе" Click="BtnAbout_Click"/>
+            </MenuItem>
+        </Menu>
+
+        <!-- Основная сетка интерфейса -->
+        <Grid Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Панель управления -->
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                <TextBlock Text="N = " VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <TextBox x:Name="txtCount" Width="60" Text="10" Padding="3"/>
+
+                <!-- Кнопка генерации -->
+                <Button Content="Сгенерировать" Click="BtnGenerate_Click"
+                        Margin="10,0,0,0" Padding="10,3"/>
+
+                <!-- Кнопка очистки -->
+                <Button Content="Очистить" Click="BtnClear_Click"
+                        Margin="5,0,0,0" Padding="10,3"/>
+            </StackPanel>
+
+            <!-- Исходный массив -->
+            <GroupBox Grid.Row="1" Header="Исходный массив (n целых чисел)" Margin="0,0,0,10">
+                <DataGrid x:Name="dgSource" AutoGenerateColumns="False" Height="100" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Индекс" Binding="{Binding Index}" Width="*"/>
+                        <DataGridTextColumn Header="Значение" Binding="{Binding Value}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+
+            <!-- Результаты вычислений (символы < и > экранированы) -->
+            <GroupBox Grid.Row="2" Header="Результат обработки (x если &gt;0, x² если &lt;0)">
+                <TextBlock x:Name="txtResult" TextWrapping="Wrap" Padding="5"
+                           Foreground="DarkGreen" FontWeight="Bold" FontSize="14"/>
+            </GroupBox>
+
+            <!-- Нижние кнопки -->
+            <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+                <Button Content="О программе" Click="BtnAbout_Click" Width="120" Margin="0,0,10,0"/>
+                <Button Content="Выход" Click="BtnExit_Click" Width="100"/>
+            </StackPanel>
+        </Grid>
+    </DockPanel>
+</Window>
